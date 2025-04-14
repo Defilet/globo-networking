@@ -17,13 +17,15 @@ data "aws_availability_zones" "available" {}
 ##################################################################################
 locals {
   common_tags = {
-    
+ Environment = var.environment
+ billing_code = var.billing_code
+ Workspace = terraform.workspace
   }
 }
 
 module "main" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "5.0.0"
+  version = "~> 5.0.0"
 
   name = var.prefix
   cidr = var.cidr_block
